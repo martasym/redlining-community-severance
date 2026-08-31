@@ -15,6 +15,8 @@ library("patchwork")
 
 # A) Replace the main_folder with wherever you put the shared folder.
 main_folder <-"/Users/martasymkowick/CommunitySeverance/code_MS/Finals/"
+generated.folder.CSI <- "CSI/Generated/" 
+name_short <- "sf"
 
 # B) First, we ensure that we have the correct spatial context for the boarder of San Francisco. 
   # Data is downloaded from TIGER shapefiles from ARC GIS https://www.arcgis.com/home/item.html?id=15e88533ab3c488a853ed32a438ad4c4
@@ -60,18 +62,11 @@ label_geom_list <- list("GEOID20", "GEOID20")
 label_geom <- census2019_sf_bg[,which(colnames(census2019_sf_bg) %in% label_geom_list)]
 
 # Access the CSI scores
-generated.data.folder <- "CSI/Data Test/"
 # Used in CSI analysis.
-#community_severance_scores <- readRDS(paste0(main_folder, generated.data.folder, "comm_sev_fa_scores_SF_081826_eta011_rank2_sf", "_dta_us.rds"))
+##community_severance_scores <- readRDS(paste0(main_folder, "Data Test/", "comm_sev_fa_scores_SF_081826_eta011_rank2_sf", "_dta_us.rds"))
 
 # Created in running Final a_01 through a_09.
-generated.folder.CSI <- "CSI/Generated/" 
-name_short <- "sf"
 community_severance_scores <- readRDS(paste0(main_folder, generated.folder.CSI, "comm_sev_fa_scores_SF_", name_short, "_dta_us.rds"))
-
-# Used in CSI
-###generated.data.folder <- "CSI/Data Test/"
-##community_severance_scores <- readRDS(paste0(main_folder, generated.data.folder, "comm_sev_fa_scores_SF_081826_eta011_rank2_sf", "_dta_us.rds"))
 
 
 # join the GEOID + the community_severance_scores

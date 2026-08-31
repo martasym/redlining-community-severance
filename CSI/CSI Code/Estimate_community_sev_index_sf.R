@@ -78,7 +78,7 @@ data_desc <- data.frame(var_name = var_name, description = desc, source = source
 dta_cs_in <- readRDS(paste0(main.folder, generated.folder.CSI, "community_severance_sf_input_data.rds"))
 
 # Used in Previous Index
-  # dta_cs_in <- readRDS(paste0(main.folder, "CSI/Data Test/", "community_severance_sf_081826__input_data.rds"))
+  # dta_cs_in <- readRDS(paste0(main.folder, "Data Test/", "community_severance_sf_081826__input_data.rds"))
 
 built_social_block_comm_sev_m <-  as.matrix(dta_cs_in[,-1])
 
@@ -103,7 +103,7 @@ data <- list("M" = dat) %>% purrr::map(as.matrix)
 # second vanilla search
 # previous search was for 0.10 through 0.11 
 
-### NOTE: The rrmc_results for each of these searches can be found in the GridSearchResults folder in the Data Test folder.
+### These are the results from the CSI grid search.
 
 # Search eta: 0.01 - 0.07 with rank 6 ->  eta =  0.07, r = 2, rel_err= 0.184,  S_sparsity= 98.3  
   # Variance was 66% for that input (eta =  0.07, r = 2) 
@@ -134,11 +134,11 @@ with_progress(expr = {
     LOD = LOD,
     perc_test = perc_test,
     runs = runs,
-    save_as = paste0(main.folder, generated.folder.CSI,"GridSearchResults/", "rrmc_vanilla_results_community_severance_", "081826_eta01-011_r2")
+    save_as = paste0(main.folder, generated.folder.CSI,"GridSearchResults/", "rrmc_vanilla_results_community_severance")
   )
 })
 # # read results
-rrmc_results <- readRDS(paste0(main.folder, generated.folder.CSI,"GridSearchResults/", "rrmc_vanilla_results_community_severance_081826_eta01-011_r2", ".rds"))
+rrmc_results <- readRDS(paste0(main.folder, generated.folder.CSI,"GridSearchResults/", "rrmc_vanilla_results_community_severance", ".rds"))
 # # \mk/
 # # # 
 # # # # 3c. The best parameter setting according to relative error...
@@ -165,11 +165,13 @@ plot_ly(data = rrmc_results$summary_stats, x = ~eta, y = ~r, z = ~S_sparsity, ty
 
 output.folder <- generated.folder.CSI
 
+# As used in the paper CSI index.
 # run pcp for optimal result
 # for 66% run with r = 2, eta = 0.11
 #    eta     r rel_err L_rank S_sparsity iterations run_error_perc
 #   <dbl> <int>   <dbl>  <dbl>      <dbl>      <dbl> <chr>         
 #   0.16     2   0.180      2       100.        NaN 0%  
+
 pcp_outs <- rrmc(data$M, r = 2, eta = 0.11, LOD = LOD) 
 # % below 0 in sparsity matrix
 sum(pcp_outs$L<0)/prod(dim(pcp_outs$L)) # 6 % below 0 in L matrix

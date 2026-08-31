@@ -12,7 +12,7 @@ traffic_co2_emis <- readRDS(paste0(main_folder, generated.folder.CSI, "traffic_c
 traffic_segment_2_grid_sld <- readRDS(paste0(main_folder, generated.folder.CSI, "traffic_segment_2_grid_sld_new_070126", name_short ,".rds"))
 
 # Load grids and smart location dataset subset
-data_desc <- readRDS(paste0(main_folder, "CSI/Data Test/", "smart_location_data_subset_desc.rds"))
+data_desc <- readRDS(paste0(main_folder, generated.folder.CSI, "smart_location_data_subset_desc.rds"))
 
 # Subset data for community severance index estimation
 vars_in <- which(colnames(sld_us_loc) %in% c("GEOID20",  
@@ -80,5 +80,5 @@ name_short_readable <- "sf"
 
 saveRDS(dta_prep, paste0(main_folder, generated.folder.CSI, "community_severance_", name_short_readable, "_input_data.rds"))
 
-Used_CSIData <- readRDS(paste0(main_folder, "CSI/Data Test/" , "community_severance_sf_081826__input_data.rds"))
+Used_CSIData <- readRDS(paste0(main_folder, "Data Test/" , "community_severance_sf_081826__input_data.rds"))
 

@@ -1,5 +1,4 @@
 # USER-redlining-community-severance
-# USER-redlining-community-severance
 
 # This is the code required to reproduce the results, tables, and figures in the study: The Association Between Redlining and Community Severance in San Francisco.
 

@@ -26,11 +26,13 @@ data <- census1940_HOLC_CSI
 
 # 1.  Downloads and prepares the data set. Adds the additional "Unlined" category.
 #A) Downloads the data set for analysis. Stores the data as data as an additional safeguard (if also working with sensitivity analysis data).
+
 main_folder <- "/Users/martasymkowick/Finals/"
 generated.data.folder <- "CSI/Generated/"
 final_sf_data <- readRDS(
   paste0(main_folder, generated.data.folder, "HOLC.CSI.1940Census_dta_us.rds")
 )
+### data used in paper can be found here: final_sf_data readRDS(paste0(main_folder, "Data Test/", "HOLC.CSI.1940Census_081826_eta011_rank2_us.rds"))
 data <- final_sf_data
 
 # B) Select the list of covariates for matching and adjustment

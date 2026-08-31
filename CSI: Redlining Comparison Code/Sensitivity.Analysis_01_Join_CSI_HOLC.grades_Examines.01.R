@@ -162,7 +162,7 @@ red_sfblock_groups_a
 
 # 4) Now, we know that those block groups that <30% redlined area are not in census2019_sf_bg_holc_overlap. 
     # We will now label these in the index_join (community severance index)
-        # We will give those not found within the census2019_sf_bg_holc_overlap data set an unlined grade.
+        # We will give those not found within the census2019_sf_bg_holc_overlap data set an no_line grade.
 index_join$HOLC_grade <- NA
 for (i in 1:nrow(index_join)){
   if (index_join$GEOID20[i] %in% census2019_sf_bg_holc_overlap$GEOID20 == FALSE){

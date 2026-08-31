@@ -24,7 +24,7 @@ library("sf")
 
 data <- census1940_HOLC_CSI
 
-# 1.  Downloads and prepares the data set. Adds the additional "not_lined" category.
+# 1.  Downloads and prepares the data set. Adds the additional "no_lined" category.
 #A) Downloads the data set for analysis. Stores the data as data as an additional safeguard (if also working with sensitivity analysis data).
 
 main_folder <- "/Users/martasymkowick/Finals/"
@@ -43,7 +43,7 @@ covariates <- c("prop_non_white", "prop_black", "prop_foreign_born_white",
 
 # C) Selects the 5 HOLC grades
 data <- data %>%
-  mutate(HOLC_grade = factor(HOLC_grade, levels = c("A", "B", "C", "D", "not_lined")))
+  mutate(HOLC_grade = factor(HOLC_grade, levels = c("A", "B", "C", "D", "no_lined")))
 
 # D) Removes units from Tot Pop, allows further analysis. Then plots the results of this to check.
 data$population_density_1940 <- as.numeric(data$Tot_Pop)
@@ -54,8 +54,8 @@ pop_plot <- ggplot() +
 pop_plot
 rm(pop_plot)
 
-# 2. Creates the not_lined grade category.
-### A. Determines the "not_lined" threshold by calculating the 
+# 2. Creates the no_lined grade category.
+### A. Determines the "no_lined" threshold by calculating the 
 ####  population density distributions across all of the block groups, and the graded block groups.
 summary(data$population_density_1940)
 #      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
@@ -66,20 +66,20 @@ summary(graded_data$population_density_1940)
 # 0.0008564 0.0038683 0.0070876 0.0084580 0.0121065 0.0241915 
 rm(graded_data)
 
-### B. Creates the "not_lined" category based of the selected cut-off.
+### B. Creates the "no_lined" category based of the selected cut-off.
 #### Currently, the median cut-off is selected.
 for(i in 1:nrow(data)){
   if(is.na(data$HOLC_grade[i]) && !is.na(data$population_density_1940[i])&&
      data$population_density_1940[i] > 0.0070876){
-    data$HOLC_grade[i] <- "not_lined"
+    data$HOLC_grade[i] <- "no_lined"
   }
 }
-### C. Plots the "not_lined" selection as a check.
-not_lined_plot <- ggplot() +
+### C. Plots the "no_lined" selection as a check.
+no_lined_plot <- ggplot() +
   geom_sf(data = data, aes(fill = HOLC_grade)) +
   scale_fill_manual(values=c("darkgreen", "lightblue","lightyellow", "darkred", "purple"))
-not_lined_plot
-rm(not_lined_plot)
+no_lined_plot
+rm(no_lined_plot)
 # breakdown of the summary of the HOLC grades
 summary(data$HOLC_grade)
 

@@ -3,7 +3,7 @@
 ## This is the code required to reproduce the results, tables, and figures in the study: The Association Between Redlining and Community Severance in San Francisco.
 
 ## CSI Folder (Community Severance Index) Finals/CSI/
-Creates the Community Severance Index (CSI) for San Francisco, using the methodology of Benavides et. al.  The original code can be found here: https://github.com/jaime-benavides/community_severance_us/tree/main.  The following has been copied for ease of reference.
+Creates the Community Severance Index (CSI) for San Francisco, using the methodology of Benavides et. al.  The original code can be found here: https://github.com/jaime-benavides/community_severance_us/tree/main. 
 
 To run the code, you need to download PCPhelpers (https://github.com/Columbia-PRIME/PCPhelpers) and pcpr (https://github.com/Columbia-PRIME/pcpr dev branch most updated March 2025) from github before running the models.
 Functions and packages folders are from Benavides et. al.
